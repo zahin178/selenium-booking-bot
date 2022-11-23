@@ -1,0 +1,16 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Distribution / packaging
+env/
+lib/
+var/
+
+# dotenv
+.env
+
+# virtualenv
+venv/
+
+# excel
+*.xlsx
