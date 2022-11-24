@@ -4,13 +4,18 @@ def date_formatter(date:str):
     '''
     formats date from ddmmyyyy into yyyy-mm-dd e.g. '31122022' to '2022-12-31'
     '''
-    date_date = date[:2]
-    date_month = date[2:4]
-    date_year = date[4:]
+    try:
+        dt.strptime(date, '%d%m%Y')
+        date_date = date[:2]
+        date_month = date[2:4]
+        date_year = date[4:]
 
-    re_date =f'{date_year}-{date_month}-{date_date}'
+        re_date =f'{date_year}-{date_month}-{date_date}'
 
-    return re_date
+        return re_date
+    except Exception as e:
+        print(e)
+        return ValueError
 
 def date_validator(check_in_date:str, check_out_date:str):
     '''
@@ -33,9 +38,16 @@ def date_validator(check_in_date:str, check_out_date:str):
     days_gap = re_check_out_date-re_check_in_date
     threshold_gap = 90 # the gap between the check-in date and check-out date cannot be more than 90 days
 
-    if re_check_in_date < re_check_out_date and days_gap.days <= threshold_gap and re_check_in_date >= today:
-        return 0
-    else:
+    if re_check_in_date >= re_check_out_date:
         print(f'Invalid dates!')
         return 1
+    elif days_gap.days > threshold_gap:
+        print('The gap between check-in and check-out dates exceed 90 days!')
+        return 2
+    elif re_check_in_date < today:
+        print(f'Invalid dates!')
+        return 3
+    elif re_check_in_date < re_check_out_date and days_gap.days <= threshold_gap and re_check_in_date >= today:
+        return 0
+   
 

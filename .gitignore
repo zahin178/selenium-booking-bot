@@ -14,3 +14,6 @@ venv/
 
 # excel
 *.xlsx
+
+# test file
+test.py
