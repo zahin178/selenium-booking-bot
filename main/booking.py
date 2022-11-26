@@ -34,7 +34,6 @@ class Booking(webdriver.Chrome):
             destination_element = self.find_element(By.ID, 'ss')
             return True
         except Exception as e:      
-            # self.close()                 
             return False  
         
 
@@ -112,7 +111,3 @@ class Booking(webdriver.Chrome):
         the_data = col.collect_data()
         excel_maker(the_data, destination)
                 
-
-    # def __exit__(self, exc_type, exc, traceback):
-    #     if self.auto_shut:
-    #         self.quit()
