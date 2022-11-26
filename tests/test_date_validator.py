@@ -1,6 +1,6 @@
 import unittest
 from validators.date_validator import date_validator, date_formatter
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 
 class TestDateValidator(unittest.TestCase):
 

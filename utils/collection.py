@@ -19,13 +19,15 @@ class Collection:
         return page_count
 
     def collect_data(self):
+        counter = 1
         cnt = self.get_page_count()
         for _ in range(1,cnt):
             self.driver.refresh()
             full_element = self.driver.find_element(By.CLASS_NAME, 'd4924c9e74')
             full_element_boxes = full_element.find_elements(By.CSS_SELECTOR, 'div[data-testid="property-card"]')
-            print('length',len(full_element_boxes))
+            print('Total hotels found',len(full_element_boxes))
             for box in full_element_boxes:
+                print(f'Hotel number {counter}')
                 box_info = {}
                 try:
                     title_element = box.find_element(By.CSS_SELECTOR, 'div[data-testid="title"]')
@@ -58,11 +60,15 @@ class Collection:
 
                 self.data.append(box_info)
 
+                counter+=1
+
             try:
                 next_page_element = self.driver.find_element(By.CSS_SELECTOR, 'button[aria-label="Next page"]')
                 next_page_element.click()
             except Exception as e:
                 pass
+
+            
 
         return self.data
 

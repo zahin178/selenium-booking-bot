@@ -28,14 +28,13 @@ class Booking(webdriver.Chrome):
         
 
     def open_first_page(self):
-        # opening the booking page
         url =  'https://www.booking.com/'
         self.get(url)
         try:                   
             destination_element = self.find_element(By.ID, 'ss')
             return True
         except Exception as e:      
-            self.close()                 
+            # self.close()                 
             return False  
         
 
@@ -72,18 +71,18 @@ class Booking(webdriver.Chrome):
         first_result.click()
 
 
-    def set_dates(self,start_date, end_date):
+    def set_dates(self,check_in_date,check_out_date):
         '''
         This function will set the check-in and check-out dates
         start date is the check-in date
         end_date is the check-out date
         '''
         ds = DateSelect(self)
-        first_cnt = ds.get_click_count(start_date)
-        re_start_date = date_validator.date_formatter(start_date)
+        first_cnt = ds.get_click_count(check_in_date)
+        re_start_date = date_validator.date_formatter(check_in_date)
         ds.confirm_date(first_cnt, re_start_date)
-        second_cnt = ds.get_click_count(end_date, first_cnt)
-        re_end_date = date_validator.date_formatter(end_date)
+        second_cnt = ds.get_click_count(check_out_date, first_cnt)
+        re_end_date = date_validator.date_formatter(check_out_date)
         ds.confirm_date(second_cnt, re_end_date)
 
 
@@ -114,6 +113,6 @@ class Booking(webdriver.Chrome):
         excel_maker(the_data, destination)
                 
 
-    def __exit__(self, exc_type, exc, traceback):
-        if self.auto_shut:
-            self.quit()
+    # def __exit__(self, exc_type, exc, traceback):
+    #     if self.auto_shut:
+    #         self.quit()
