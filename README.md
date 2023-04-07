@@ -3,6 +3,12 @@ This repo consists python-selenium based web crawler to crawl the Booking.com we
 
 # How to use
 
+- Find the version of your chrome browser by typing chrome://version/ in the url
+- After identifying the browser version go to the following link and download the chromedriver zip file which has the same version as your browser
+https://chromedriver.storage.googleapis.com/index.html
+- Now create a folder named "SeleniumDrivers" like the following path
+C:/Program Files/SeleniumDrivers
+- Extarct the zip file into the C:/Program Files/SeleniumDrivers folder
 - clone the repo
 - go to the selenium-booking-bot folder
 - create a virtual environment | python -m venv venv
